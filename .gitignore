@@ -6,3 +6,7 @@
 # Modules and other hidden files
 **/.terraform
 **/.terraform.lock.hcl
+
+.idea/
+.vs/
+ec2-key

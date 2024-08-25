@@ -35,8 +35,8 @@ resource "local_file" "private_key" {
 
 # Create security group for access to EC2
 resource "aws_security_group" "sde_security_group" {
-  name        = "airflow_security_group"
-  description = "Security group to allow ssh and airflow"
+  name        = "security_group"
+  description = "Security group to allow ssh"
 
   ingress {
     description = "Inbound SCP"
@@ -81,7 +81,7 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
-resource "aws_instance" "airflow_ec2" {
+resource "aws_instance" "test_ec2" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
 
@@ -89,7 +89,7 @@ resource "aws_instance" "airflow_ec2" {
   security_groups = [aws_security_group.sde_security_group.name]
 
   tags = {
-    Name = "airflow_test_ec2"
+    Name = "test_ec2"
   }
   ebs_block_device {
       device_name = "/dev/sdf"
